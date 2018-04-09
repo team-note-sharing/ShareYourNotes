@@ -68,6 +68,13 @@ userRoutes.route('/filter', {
   },
 });
 
+export const myBoardPageRouteName = 'My_Board_Page';
+userRoutes.route('/board', {
+  name: myBoardPageRouteName,
+  action() {
+    BlazeLayout.render('User_Layout', { main: myBoardPageRouteName });
+  },
+});
 /*                        MISC ROUTES                       */
 FlowRouter.notFound = {
   action() {
