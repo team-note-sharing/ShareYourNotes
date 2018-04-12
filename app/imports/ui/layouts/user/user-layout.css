@@ -1,4 +1,30 @@
 .user-layout-body {
-  padding-top: 75px;
+  padding-top: 60px;
 }
 
+.top.borderless {
+  border: none;
+  box-shadow: none;
+}
+#content {
+  min-height: 200px !important;
+}
+.ui.grid{
+  padding: 0 !important;
+}
+.pushable.segment{
+  margin: 0 !important;
+}
+.ui.mobile.menu {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+a#mobile_item.item {
+  background: none;
+}
+.landing-menu {
+  padding: 10px 10px 30px 10px;
+  background-color: white;
+  color: #E5F9E7;
+}

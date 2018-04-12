@@ -1,58 +1,58 @@
 <template name="Landing_Page">
 
-  <div class="landing-section-1">
-    <div class="ui grid">
+  <div class="landing-menu">
 
-      <div class="row">
-        <div class="ui right aligned sixteen wide column">
-          {{> Cas_Login }}
+    <div class="ui grid">
+      <!--Design for computer only-->
+      <div class="computer only row">
+        <div class="ui top fixed borderless menu">
+          <div class="ui container">
+            <div class="item"><h1>ShareYourNotes</h1></div>
+            <a class="{{isActiveRoute "My_Board_Page"}} item" href="{{pathFor "My_Board_Page" username=routeUserName}}">My
+              Board</a>
+            <a class="{{isActiveRoute "Filter_Page"}} item" href="{{pathFor "Filter_Page" username=routeUserName}}">Filter</a>
+            <div class="right aligned item">{{> Cas_Login }}</div>
+          </div>
         </div>
-
-      </div>
-      <div class="row">
-        <div class="ui center aligned sixteen wide column">
-          <h1 class="landing-section-1-welcome">Welcome to Share Your Notes</h1>
-
+      </div><!--end computer only-->
+      <!--Design for mobile only-->
+      <div class="tablet mobile only row">
+        <div class="column">
+          <div class="ui mobile borderless compact menu">
+            <a id="mobile_item" class="item">
+              <button class="ui menu button"><i class="bars icon"></i></button>
+            </a>
+            <div class="item"><h2>Share Your Notes</h2></div>
+          </div>
+        </div>
+      </div><!--end mobile only-->
+    </div> <!--end ui grid-->
+    <div class="ui pushable segment">
+      <div class="ui sidebar vertical menu">
+        <div class="ui container">
+          <a class="{{isActiveRoute "My_Board_Page"}} item" href="{{pathFor "My_Board_Page" username=routeUserName}}">My
+            Board</a>
+          <a class="{{isActiveRoute "Filter_Page"}} item"
+             href="{{pathFor "Filter_Page" username=routeUserName}}">Filter</a>
+          <div class="right aligned item">{{> Cas_Login }}</div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="landing-section-2">
-    <div class="ui grid">
-      <div class="ui eight wide column">
-      </div>
-      <div class="ui eight wide middle aligned column">
+  <div class="ui pushable segment">
+    <div class="pusher">
+      <div id="content">
+        <div class="landing-section-2">
+          <div id="content" class="ui grid">
+            <div class="ui eight wide column">
+            </div>
+            <div class="ui eight wide middle aligned column">
 
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
-  <div class="landing-section-3">
-    <div class="ui grid">
-      <div class="ui eight wide middle aligned column">
-
-      </div>
-      <div class="ui eight wide column">
-      </div>
-    </div>
-  </div>
-
-  <div class="landing-section-2">
-    <div class="ui grid">
-      <div class="ui eight wide column">
-      </div>
-      <div class="ui eight wide middle aligned column">
-      </div>
-    </div>
-  </div>
-
-  <div class="landing-section-5">
-    <div class="ui grid">
-      <div class="ui center aligned sixteen wide column">
-        {{> Cas_Login size="large"}}
-      </div>
-    </div>
-  </div>
-
 </template>
