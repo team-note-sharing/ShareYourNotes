@@ -28,3 +28,10 @@ a#mobile_item.item {
   background-color: white;
   color: #E5F9E7;
 }
+.ui.dropdown.icon.button {
+  background: none;
+  padding: 0px;
+}
+i.dropdown.icon:focus {
+  outline:none;
+}
