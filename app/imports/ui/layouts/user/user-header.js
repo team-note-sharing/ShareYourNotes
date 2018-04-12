@@ -10,7 +10,7 @@ Template.User_Header.onCreated(function onCreated() {
 });
 
 Template.User_Header.onRendered(function() {
-  this.$('.dropdown').dropdown();
+  $('.dropdown').dropdown({transition: 'drop' }).dropdown({ on: 'hover' });
   this.$('.ui.sidebar').sidebar({
     context: $('.ui.pushable.segment'),
     transition: 'overlay'
