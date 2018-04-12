@@ -8,10 +8,22 @@
             <a class="{{isActiveRoute "My_Board_Page"}} item" href="{{pathFor "My_Board_Page" username=routeUserName}}">My
               Board</a>
             <a class="{{isActiveRoute "Filter_Page"}} item" href="{{pathFor "Filter_Page" username=routeUserName}}">Filter</a>
-            <div class="right aligned item">{{> Cas_Login }}</div>
+            <div class="ui right aligned dropdown item" >
+              <div class="floating inverted">
+                <i class="user icon"></i>
+                {{#if profile.firstName}}{{profile.firstName}} {{profile.lastName}}{{/if}}&nbsp;&nbsp;&nbsp;
+                <i class="dropdown icon"></i>
+              </div>
+              <div class="menu">
+                <a class="item " href="{{pathFor "Edit_Profile_Page" username=routeUserName}}">Edit Profile</a>
+                <a class="item cas-logout">Logout</a>
+              </div>
+            </div>
           </div>
         </div>
       </div><!--end computer only-->
+
+      <!--design for mobil only-->
       <div class="tablet mobile only row">
         <div class="column">
           <div class="ui mobile borderless compact menu">
@@ -19,7 +31,7 @@
             <div class="item"><h2>Share Your Notes</h2></div>
           </div>
         </div>
-      </div>
+      </div><!--end for mobile only-->
     </div>
     <div class="ui pushable segment">
       <div class="ui sidebar vertical menu">

@@ -59,6 +59,20 @@ userRoutes.route('/profile', {
     BlazeLayout.render('User_Layout', { main: profilePageRouteName });
   },
 });
+userRoutes.route('/', {
+  name: profilePageRouteName,
+  action() {
+    BlazeLayout.render('User_Layout', { main: profilePageRouteName });
+  },
+});
+
+export const editProfilePageRouteName = 'Edit_Profile_Page';
+userRoutes.route('/edit-profile', {
+  name: editProfilePageRouteName,
+  action() {
+    BlazeLayout.render('User_Layout', { main: editProfilePageRouteName });
+  },
+});
 
 export const filterPageRouteName = 'Filter_Page';
 userRoutes.route('/filter', {

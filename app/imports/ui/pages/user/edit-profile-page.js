@@ -8,17 +8,16 @@ import { Interests } from '/imports/api/interest/InterestCollection';
 const displaySuccessMessage = 'displaySuccessMessage';
 const displayErrorMessages = 'displayErrorMessages';
 
-
-Template.Profile_Page.onCreated(function onCreated() {
+Template.Edit_Profile_Page.onCreated(function onCreated() {
   this.subscribe(Interests.getPublicationName());
   this.subscribe(Profiles.getPublicationName());
   this.messageFlags = new ReactiveDict();
   this.messageFlags.set(displaySuccessMessage, false);
   this.messageFlags.set(displayErrorMessages, false);
-  this.context = Profiles.getSchema().namedContext('Profile_Page');
+  this.context = Profiles.getSchema().namedContext('Edit_Profile_Page');
 });
 
-Template.Profile_Page.helpers({
+Template.Edit_Profile_Page.helpers({
   successClass() {
     return Template.instance().messageFlags.get(displaySuccessMessage) ? 'success' : '';
   },
@@ -35,14 +34,14 @@ Template.Profile_Page.helpers({
     const profile = Profiles.findDoc(FlowRouter.getParam('username'));
     const selectedInterests = profile.interests;
     return profile && _.map(Interests.findAll(),
-            function makeInterestObject(interest) {
-              return { label: interest.name, selected: _.contains(selectedInterests, interest.name) };
-            });
+        function makeInterestObject(interest) {
+          return { label: interest.name, selected: _.contains(selectedInterests, interest.name) };
+        });
   },
 });
 
 
-Template.Profile_Page.events({
+Template.Edit_Profile_Page.events({
   'submit .profile-data-form'(event, instance) {
     event.preventDefault();
     const firstName = event.target.First.value;
@@ -57,9 +56,8 @@ Template.Profile_Page.events({
     const selectedInterests = _.filter(event.target.Interests.selectedOptions, (option) => option.selected);
     const interests = _.map(selectedInterests, (option) => option.value);
 
-    const selectedMajors = _.filter(event.target.Majors.selectedOptions, (option) => option.selected);
-
-    const updatedProfileData = { firstName, lastName, title, picture, github, facebook, instagram, bio, interests, username };
+    const updatedProfileData = { firstName, lastName, title, picture, github, facebook, instagram, bio, interests,
+      username };
 
     // Clear out any old validation errors.
     instance.context.reset();
@@ -71,8 +69,7 @@ Template.Profile_Page.events({
     if (instance.context.isValid()) {
       const docID = Profiles.findDoc(FlowRouter.getParam('username'))._id;
       const id = Profiles.update(docID, { $set: cleanData });
-      instance.messageFlags.set(displaySuccessMessage, id);
-      instance.messageFlags.set(displayErrorMessages, false);
+      FlowRouter.go('/' + FlowRouter.getParam('username'));
     } else {
       instance.messageFlags.set(displaySuccessMessage, false);
       instance.messageFlags.set(displayErrorMessages, true);
