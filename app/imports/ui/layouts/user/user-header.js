@@ -9,11 +9,11 @@ Template.User_Header.onCreated(function onCreated() {
   this.subscribe(Profiles.getPublicationName());
 });
 
-Template.User_Header.onRendered(function() {
+Template.User_Header.onRendered( function () {
   $('.dropdown').dropdown({transition: 'drop' }).dropdown({ on: 'hover' });
   this.$('.ui.sidebar').sidebar({
     context: $('.ui.pushable.segment'),
-    transition: 'overlay'
+    transition: 'overlay',
   }).sidebar('attach events', '#mobile_item');
 });
 
