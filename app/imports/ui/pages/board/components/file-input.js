@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-
+import './component.css';
 export default class FileInputs extends Component {
   constructor(props) {
     super(props);
@@ -11,20 +11,33 @@ export default class FileInputs extends Component {
         {id: 1, label: '', name: 'File 1'},
       ],
     }
-    this.handleFileUpload = this.handleFileUpload.bind(this);
+    this.handleAddFile = this.handleAddFile.bind(this);
+    this.handleRemoveFile = this.handleRemoveFile.bind(this);
   }
-  handleFileUpload(event) {
+  handleAddFile(event) {
+    event.preventDefault();
+      const files = this.state.files;
+      files.push({ id: this.nextId, name: 'file ' + this.nextId, label: '' });
+      this.nextId++;
+      this.setState({ files: files });
+  }
+  handleRemoveFile(event) {
     event.preventDefault();
     const files = this.state.files;
-    files.push({id: this.nextId, name: 'file ' + this.nextId, label: ''});
-    this.nextId++;
-    this.setState({files: files});
+    pos = files.map(function(e) { return e.id; }).indexOf(parseInt(event.target.name));
+    files.splice(pos, 1);
+    this.setState({ files: files });
   }
-  render () { return <label>{this.state.label} <br/>
+  render () { return <div>
+    <label>{this.state.label}</label> <br/>
+    <input type="button" className="ui mini button" onClick={this.handleAddFile} value="+"/>
     {this.state.files.map((file, index) => {
-      return (<FileInput key={file.id} label={file.label} name={file.name} onChange={this.handleFileUpload}/>);
+      return <span key={"span " + file.id}>
+        <FileInput key={file.id} label={file.label} name={file.name} />
+        <input type="button" className="ui mini button"  key={" " + file.id} name={file.id} onClick={this.handleRemoveFile} value="x"/>
+      </span>;
     })}
-  </label>;
+  </div>;
   }
 }
 

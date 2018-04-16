@@ -40,7 +40,8 @@ export default class Form extends Component {
       <div className="field">
         <FileInputs name="file" label="Attachment"/>
       </div>
-      <button className="ui button" type="submit">Submit</button>
+      <button className="ui primary button" type="submit">Submit</button>
+      <a className="ui red button" href="../board">Cancel</a>
     </form>
     </div>;
   }
