@@ -77,7 +77,7 @@ class BaseCollection {
             this._collection.findOne({ username: name }) ||
             this._collection.findOne({ _id: name }));
     if (!doc) {
-      throw new Meteor.Error(`${name} is not a defined ${this._type}`);
+      //throw new Meteor.Error(`${name} is not a defined ${this._type}`);
     }
     return doc;
   }

@@ -181,6 +181,7 @@
         <item url="file://$USER_HOME$/.meteor/packages/random/1.0.10/web.browser/random.js" />
         <item url="file://$USER_HOME$/.meteor/packages/random/1.0.10/web.browser/random_tests.js" />
         <item url="file://$USER_HOME$/.meteor/packages/rate-limit/1.0.8/web.browser/rate-limit.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/react-template-helper/0.2.10/web.browser/react-template-helper.js" />
         <item url="file://$USER_HOME$/.meteor/packages/reactive-dict/1.1.9/web.browser/migration.js" />
         <item url="file://$USER_HOME$/.meteor/packages/reactive-dict/1.1.9/web.browser/reactive-dict-tests.js" />
         <item url="file://$USER_HOME$/.meteor/packages/reactive-dict/1.1.9/web.browser/reactive-dict.js" />
@@ -408,6 +409,7 @@
       <root url="file://$USER_HOME$/.meteor/packages/random/1.0.10/web.browser/random.js" />
       <root url="file://$USER_HOME$/.meteor/packages/random/1.0.10/web.browser/random_tests.js" />
       <root url="file://$USER_HOME$/.meteor/packages/rate-limit/1.0.8/web.browser/rate-limit.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/react-template-helper/0.2.10/web.browser/react-template-helper.js" />
       <root url="file://$USER_HOME$/.meteor/packages/reactive-dict/1.1.9/web.browser/migration.js" />
       <root url="file://$USER_HOME$/.meteor/packages/reactive-dict/1.1.9/web.browser/reactive-dict-tests.js" />
       <root url="file://$USER_HOME$/.meteor/packages/reactive-dict/1.1.9/web.browser/reactive-dict.js" />
