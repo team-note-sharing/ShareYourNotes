@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import TextInput from './text-input';
+import FileInputs from './file-input';
 export default class Form extends Component {
   constructor(props) {
     super(props);
@@ -27,20 +29,16 @@ export default class Form extends Component {
     return <div className="ui container">
     <form onSubmit={this.handleSubmit} className="ui form">
       <div className="field">
-        <label>Notes Title</label>
-        <input type="text" name="title" placeholder="Programming Testing"/>
+        <TextInput type="text" name="title" label="Title" placeholder="Programming"/>
       </div>
       <div className="field">
-        <label>Course</label>
-        <input type="text" name="course" placeholder="ICS465"/>
+        <TextInput type="text" name="course" label="Course" placeholder="ICS 465"/>
       </div>
       <div className="field">
-        <label>Description</label>
-        <textarea name="description"/>
+        <TextInput type="textarea" name="description" label="Description"/>
       </div>
       <div className="field">
-        <label>Attachment</label>
-        <input type="file" name="file" onChange={this.handleFileUpload}/>
+        <FileInputs name="file" label="Attachment"/>
       </div>
       <button className="ui button" type="submit">Submit</button>
     </form>
