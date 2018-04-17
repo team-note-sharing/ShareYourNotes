@@ -1,12 +1,21 @@
-import React from 'react';
-import { Meteor } from 'meteor/meteor';
-import { render } from 'react-dom';
 import { Template } from 'meteor/templating';
-import Dashboard  from './components/dashboard';
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import { Profiles } from '/imports/api/profile/ProfileCollection';
+import { Meteor } from 'meteor/meteor';
+import Dashboard from './components/dashboard';
+
+
+Template.My_Board_Page.onCreated(function onCreated() {
+  this.subscribe(Profiles.getPublicationName());
+});
 
 Template.My_Board_Page.helpers({
   dashboard: function () {
     return Dashboard;
+  },
+  profile() {
+    return Profiles.findDoc(FlowRouter.getParam('username'));
+
   },
 });
 /* Test Tic-Tac-Toe

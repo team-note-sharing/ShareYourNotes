@@ -15,7 +15,6 @@ export default class Dashboard extends Component {
   render() {
     return <div className="ui container">
       <h3>Dash Board</h3>
-
     </div>;
   }
 }
