@@ -5,6 +5,7 @@
         <div class="ui top fixed borderless menu">
           <div class="ui container">
             <div class="item"><h1>ShareYourNotes</h1></div>
+            <a class="{{isActiveRoute "Find_Note_Page"}} item" href="{{pathFor "Find_Note_Page" username=routeUserName}}">Fine Note</a>
             <a class="{{isActiveRoute "My_Board_Page"}} item" href="{{pathFor "My_Board_Page" username=routeUserName}}">My
               Board</a>
             <a class="{{isActiveRoute "Filter_Page"}} item" href="{{pathFor "Filter_Page" username=routeUserName}}">Filter</a>
