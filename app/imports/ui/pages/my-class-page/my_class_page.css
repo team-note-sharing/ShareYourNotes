@@ -1,0 +1,13 @@
+.pusher {
+  min-height: 300px !important;
+}
+.ui.course.button {
+  height: 100px;
+  widht: 30px;
+  border: 1px solid black !important;
+}
+
+.ui.segment.pushable {
+  border: none;
+  border-radius: 0px;
+}

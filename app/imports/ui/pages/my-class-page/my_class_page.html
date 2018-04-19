@@ -1,0 +1,74 @@
+<template name="My_Class_Page">
+  <div class="ui bottom attached segment pushable">
+    <div class="ui visible inverted left vertical sidebar menu">
+      <a class="item" href="#">{{profile.firstName}} {{profile.lastName}}</a>
+      <a class="item" href="#"><h2>My Notebook</h2></a>
+      <a class="item">
+        <h3>ICS 332</h3>
+      </a>
+      <a class="item">
+        <h3>ICS 435</h3>
+      </a>
+      <a class="item">
+        <h3>Math 311</h3>
+      </a>
+      <a class="item">
+        <h3>ICS 211</h3>
+      </a>
+      <a class="item" href="board/add-note">
+        <h3>Add Note<i class="plus icon"></i></h3>
+      </a>
+    </div>
+    <div class="pusher">
+      <div class="ui container">
+        <div class="ui grid">
+            <div class="row">
+                <h1>My Board</h1>
+            </div>
+            <div class="row">
+              <div class="eight wide column">
+                <h3>My Notes</h3>
+
+                <div class="ui four columns grid">
+                  <div class="row">
+                    <div class="ui horizontal divider">
+                    Fall 2018
+                    </div>
+                    <div class="column">
+                      <button class="ui course button">ICS 332</button>
+                    </div>
+                    <div class="column">
+                      <button class="ui course button">ICS 435</button>
+                    </div>
+                    <div class="column">
+                      <button class="ui course button">ICS 311</button>
+                    </div>
+                    <div class="column">
+                      <button class="ui course button">ICS 211</button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="ui horizontal divider">
+                      Spring 2018
+                    </div>
+                    <div class="column">
+                      <button class="ui course button">JAP 211</button>
+                    </div>
+                    <div class="column">
+                      <button class="ui course button">Math 311</button>
+                    </div>
+                    <div class="column">
+                      <button class="ui course button">IP 367</button>
+                    </div>
+                    <div class="column">
+                      <button class="ui course button">ICS 321</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
