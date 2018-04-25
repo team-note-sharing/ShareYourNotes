@@ -89,6 +89,13 @@ userRoutes.route('/find_note', {
     BlazeLayout.render('User_Layout', { main: findNotePageRouteName });
   },
 });
+export const myClassRouteName = 'My_Class_Page';
+userRoutes.route('/myclass', {
+  name: myClassRouteName,
+  action() {
+    BlazeLayout.render('User_Layout', { main: myClassRouteName });
+  },
+});
 export const myBoardPageRouteName = 'My_Board_Page';
 userRoutes.route('/board', {
   name: myBoardPageRouteName,
