@@ -12,6 +12,7 @@
     "meteor-node-stubs": "~0.2.0",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
+    "semantic-ui-react": "^0.79.1",
     "simpl-schema": "^0.3.2"
   },
   "devDependencies": {
