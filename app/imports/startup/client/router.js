@@ -96,6 +96,13 @@ userRoutes.route('/myclass', {
     BlazeLayout.render('User_Layout', { main: myClassRouteName });
   },
 });
+export const publicClassRouteName = 'Public_Class_Page';
+userRoutes.route('/pubclass', {
+  name: publicClassRouteName,
+  action() {
+    BlazeLayout.render('User_Layout', { main: publicClassRouteName });
+  },
+});
 export const myBoardPageRouteName = 'My_Board_Page';
 userRoutes.route('/board', {
   name: myBoardPageRouteName,
