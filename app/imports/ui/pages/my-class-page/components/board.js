@@ -10,7 +10,6 @@ export default class Board extends Component {
     for (i=0; i<noteTitle.length; i++) {
       options.push({key: noteTitle[i], value: noteTitle[i], text: noteTitle[i] })
     }
-    console.log(options);
     const system = [
       { header: 'System 1',},
       { header: 'System 2', },
