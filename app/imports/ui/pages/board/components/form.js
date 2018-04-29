@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import { Meteor } from 'meteor/meteor';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import TextInput from './text-input';
 import FileInputs from './file-input';
+import { Notes } from '/imports/api/note/NoteCollection';
 export default class Form extends Component {
   constructor(props) {
     super(props);
+    Meteor.subscribe(Notes.getPublicationName());
+    //this.context = Notes.getSchema().namedContext('Add_Note_Page');
     this.state = {value: ''};
     this.state = {title: ''};
     this.state = {course: ''};
@@ -16,10 +21,25 @@ export default class Form extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    this.state.title = event.target.title.value;
-    this.state.course = event.target.course.value;
-    this.state.description = event.target.description.value;
-    console.log(this.state);
+    const title = event.target.title.value;
+    const course = event.target.course.value;
+    const description = event.target.description.value;
+    const attachment = '';
+
+    const newNoteData = { title, course, description, attachment };
+
+    const cleanData = Notes.getSchema().clean(newNoteData);
+    // Determine validity.
+    const context = Notes.getSchema().newContext()
+    context.validate(cleanData);
+    if (context.isValid()) {
+      Notes.define(newNoteData);
+      FlowRouter.go('/' + FlowRouter.getParam('username') + '/board');
+      //console.log("Valid");
+    } else {
+      console.log("Error");
+    }
+    //Notes.define(newNoteData);
   }
   handleFileUpload(event) {
     event.preventDefault();
@@ -38,7 +58,7 @@ export default class Form extends Component {
         <TextInput type="textarea" name="description" label="Description"/>
       </div>
       <div className="field">
-        <FileInputs name="file" label="Attachment"/>
+        <FileInputs name="attachment" label="Attachment"/>
       </div>
       <button className="ui primary button" type="submit">Submit</button>
       <a className="ui red button" href="../board">Cancel</a>
