@@ -1,7 +1,9 @@
 .user-layout-body {
   padding-top: 55px;
 }
-
+.pusher > .ui.container {
+  padding-bottom: 5px;
+}
 .top.borderless {
   border: none;
   box-shadow: none;

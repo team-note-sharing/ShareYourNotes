@@ -117,6 +117,13 @@ userRoutes.route('/board/add-note', {
     BlazeLayout.render('User_Layout', { main: addNotePageRouteName });
   },
 });
+export const addCoursePageRouteName = 'Add_Course_Page';
+userRoutes.route('/board/add-course', {
+  name: addCoursePageRouteName,
+  action() {
+    BlazeLayout.render('User_Layout', { main: addCoursePageRouteName });
+  },
+});
 /*                        MISC ROUTES                       */
 FlowRouter.notFound = {
   action() {

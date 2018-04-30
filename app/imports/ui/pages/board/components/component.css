@@ -1,3 +1,10 @@
 .ui.mini.button {
   margin-top: 5px;
 }
+
+.ui.card > .content {
+  min-width: 600px;
+}
+.ui.form > .ui.search {
+  margin: 0px;
+}

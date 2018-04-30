@@ -147,6 +147,64 @@
           "picture": "/images/casanova.jpg"
         }
       ]
+    },
+    {
+      "name": "CourseCollection",
+      "contents": [
+        {
+          "username": "nn4",
+          "course": "ICS332",
+          "semester": "Fall 2018",
+          "professor": "Henri Casanova"
+        },
+        {
+          "username": "nn4",
+          "course": "ICS435",
+          "semester": "Fall 2018",
+          "professor": "Philip Johnson"
+        },
+        {
+          "username": "nn4",
+          "course": "ICS311",
+          "semester": "Fall 2018",
+          "professor": "Ravi Narayan"
+        },
+        {
+          "username": "nn4",
+          "course": "ICS211",
+          "semester": "Fall 2018",
+          "professor": "Richard Halverson"
+        },
+        {
+          "username": "nn4",
+          "course": "JAP201",
+          "semester": "Fall 2017",
+          "professor": "Emi Muraiya"
+        },
+        {
+          "username": "nn4",
+          "course": "IP367",
+          "semester": "Fall 2017",
+          "professor": "Nagato"
+        },
+        {
+          "username": "hailing",
+          "course": "ICS211",
+          "semester": "Fall 2018",
+          "professor": "Richard Halverson"
+        }
+      ]
+    },
+    {
+      "name": "NoteCollection",
+      "contents": [
+        {
+          "title": "UI Design",
+          "course": "ICS332",
+          "description": "Fall 2018",
+          "attachment": "http://example.com"
+        }
+      ]
     }
   ]
 }

@@ -1,25 +1,8 @@
-import React from 'react';
-import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
 import { Template } from 'meteor/templating';
-import Form  from './components/form';
-import App  from './tic-tac-toe/App';
-import Hello from './Hello';
+import NoteForm  from './components/add-note-form';
 Template.Add_Note_Page.helpers({
   form: function () {
-    return Form;
-  },
-  app: function () {
-    return App;
-  },
-  hello: function () {
-    return Hello;
+    return NoteForm;
   },
 });
-/* Test Tic-Tac-Toe
-Template.Add_Note_Page.helpers ({
-  app: function () {
-    return App;
-  },
-});
-*/

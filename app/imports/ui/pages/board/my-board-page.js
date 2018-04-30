@@ -1,21 +1,21 @@
 import { Template } from 'meteor/templating';
-import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Profiles } from '/imports/api/profile/ProfileCollection';
-import { Meteor } from 'meteor/meteor';
+import { Courses } from '/imports/api/course/CourseCollection';
 import Dashboard from './components/dashboard';
+import SideBar from './components/sidebar';
 
 
 Template.My_Board_Page.onCreated(function onCreated() {
   this.subscribe(Profiles.getPublicationName());
-});
+  this.subscribe(Courses.getPublicationName());
 
+});
 Template.My_Board_Page.helpers({
   dashboard: function () {
     return Dashboard;
   },
-  profile() {
-    return Profiles.findDoc(FlowRouter.getParam('username'));
-
+  sidebar: function () {
+    return SideBar;
   },
 });
 /* Test Tic-Tac-Toe
