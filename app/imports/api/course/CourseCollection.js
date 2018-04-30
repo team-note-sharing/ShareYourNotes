@@ -1,6 +1,8 @@
 import SimpleSchema from 'simpl-schema';
 import BaseCollection from '/imports/api/base/BaseCollection';
 import { check } from 'meteor/check';
+import { Meteor } from 'meteor/meteor';
+import { _ } from 'meteor/underscore';
 import { Tracker } from 'meteor/tracker';
 
 /** @module Profile */
@@ -9,18 +11,18 @@ import { Tracker } from 'meteor/tracker';
  * Profiles provide portfolio data for a user.
  * @extends module:Base~BaseCollection
  */
-class NoteCollection extends BaseCollection {
+class CourseCollection extends BaseCollection {
 
   /**
-   * Creates the Note collection.
+   * Creates the Profile collection.
    */
   constructor() {
-    super('Note', new SimpleSchema({
+    super('Course', new SimpleSchema({
       // Remainder are optional
-      title: { type: String },
-      course: { type: String },
-      description: { type: String },
-      attachment: { type: String, optional: true },
+      username: { type: String},
+      course: { type: String},
+      semester: { type: String},
+      professor: { type: String, optional: true },
     }, { tracker: Tracker }));
   }
 
@@ -35,12 +37,14 @@ class NoteCollection extends BaseCollection {
    *
    * @returns The newly created docID.
    */
-  define({ title = '', course = '', description = '', attachment = '' }) {
+  define({ username, course = '', semester = '', professor = '' }) {
     // make sure required fields are OK.
-    const checkPattern = { title: String, course: String, description: String, attachment: String };
-    check({ title, course, description, attachment }, checkPattern);
-
-    return this._collection.insert({ title, course, description, attachment });
+    const checkPattern = { username: String, course: String, semester: String, professor: String };
+    check({ username, course, semester, professor }, checkPattern);
+    if (this.find({ course }).count() > 0) {
+      throw new Meteor.Error(`${course} is previously defined in another Course`);
+    }
+    return this._collection.insert({ username, course, semester, professor });
   }
 
   /**
@@ -50,15 +54,15 @@ class NoteCollection extends BaseCollection {
    */
   dumpOne(docID) {
     const doc = this.findDoc(docID);
-    const title = doc.title;
+    const username = doc.username;
     const course = doc.course;
-    const description = doc.description;
-    const attachment = doc.attachment;
-    return { title, course, description, attachment };
+    const semester = doc.semester;
+    const professor = doc.professor;
+    return { username, course, semester, professor };
   }
 }
 
 /**
  * Provides the singleton instance of this class to all other entities.
  */
-export const Notes = new NoteCollection();
+export const Courses = new CourseCollection();
