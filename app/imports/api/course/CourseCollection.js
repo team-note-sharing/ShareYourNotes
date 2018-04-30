@@ -41,7 +41,7 @@ class CourseCollection extends BaseCollection {
     // make sure required fields are OK.
     const checkPattern = { username: String, course: String, semester: String, professor: String };
     check({ username, course, semester, professor }, checkPattern);
-    if (this.find({ course }).count() > 0) {
+    if (this.find({ course, username }).count() > 0) {
       throw new Meteor.Error(`${course} is previously defined in another Course`);
     }
     return this._collection.insert({ username, course, semester, professor });
