@@ -90,7 +90,7 @@ userRoutes.route('/find_note', {
   },
 });
 export const myClassRouteName = 'My_Class_Page';
-userRoutes.route('/myclass', {
+userRoutes.route('/myclass/:_id', {
   name: myClassRouteName,
   action() {
     BlazeLayout.render('User_Layout', { main: myClassRouteName });

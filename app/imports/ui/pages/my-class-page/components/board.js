@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import { Meteor } from 'meteor/meteor';
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import { Notes } from '/imports/api/note/NoteCollection';
+import { Courses } from '/imports/api/course/CourseCollection';
 import { Card, Divider, Header, Container, Dropdown} from 'semantic-ui-react';
 import './board.css';
 export default class Board extends Component {
+  constructor(props) {
+    super(props);
+    Meteor.subscribe(Courses.getPublicationName());
+    Meteor.subscribe(Notes.getPublicationName());
+  }
   render() {
-    const courseTitle = "ICS 332"
+
+    const courseData = Courses.findDoc(FlowRouter.getParam('_id'));
+    const NotesData = Notes.findAll();
+    const courseTitle = courseData.course;
     const noteTitle = ["CPU", "System"]
     const options = [];
     for (i=0; i<noteTitle.length; i++) {

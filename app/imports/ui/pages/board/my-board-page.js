@@ -6,7 +6,6 @@ import SideBar from './components/sidebar';
 
 
 Template.My_Board_Page.onCreated(function onCreated() {
-  this.subscribe(Profiles.getPublicationName());
   this.subscribe(Courses.getPublicationName());
 
 });
