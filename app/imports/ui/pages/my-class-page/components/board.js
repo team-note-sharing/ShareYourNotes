@@ -16,6 +16,7 @@ export default class Board extends Component {
 
     const courseData = Courses.findDoc(FlowRouter.getParam('_id'));
     const NotesData = Notes.findAll();
+    const username = FlowRouter.getParam('username');
     const courseTitle = courseData.course;
     const noteTitle = ["CPU", "System"]
     const options = [];
@@ -47,6 +48,9 @@ export default class Board extends Component {
     return (
       <div className="wraper">
        <Header as='h1' textAlign='center' block> {courseTitle} </Header>
+       <a className="add" href={'/'+username+'/board/add-note'}>
+         <h3>Add Course<i className="plus icon"></i></h3>
+       </a>
        <Dropdown placeholder='Select topics' fluid multiple selection options={options} />
        <Container>
           <Divider horizontal><Header as='h2'>{noteTitle[0]}</Header></Divider>

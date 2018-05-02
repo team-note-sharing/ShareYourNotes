@@ -2,3 +2,12 @@
   margin :0px;
   width: 100%;
 }
+.add:link {
+    color: grey;
+}
+.add:hover {
+  color: #21252B;
+}
+.add: visited {
+  color: #21252B;
+}

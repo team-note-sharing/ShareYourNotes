@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 //import { Notes } from '/imports/api/note/NoteCollection';
 import { Courses } from '/imports/api/course/CourseCollection';
+import {Notes} from '/imports/api/note/NoteCollection';
 import { _ } from 'meteor/underscore';
 import { Card, Divider, Grid, Button} from 'semantic-ui-react';
 
@@ -13,6 +14,7 @@ export default class Dashboard extends Component {
     Meteor.subscribe(Courses.getPublicationName());
   }
   render() {
+    console.log(Notes);
     const username = FlowRouter.getParam('username');
     const myCourses = _.filter(_.map(Courses.findAll(),
         function makeCoursesObject(course) {
@@ -20,10 +22,16 @@ export default class Dashboard extends Component {
             return { header: course.course, description: course.professor, semester: course.semester, id: course._id };
           }
         }), function(value) {return value != null});
+
+    const myNotes = _.filter(_.map(Notes.findAll(),
+        function makeCoursesObject(note) {
+            return { header: note.title, description: note.course, semester: note.description, id: note._id };
+        }), function(value) {return value != null});
+        console.log(myCourses);
+        console.log(myNotes);    
     let semesters = _.uniq(_.map(myCourses, function(course) {
       return course.semester;
     }));
-    console.log(myCourses);
     return (
         <Grid columns={4}>
         {_.map(semesters, function(semester, semester_key) {
