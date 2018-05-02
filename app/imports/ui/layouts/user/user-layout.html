@@ -1,16 +1,7 @@
-
 <template name="User_Layout">
-
   {{#If_Authorized}}
-
     {{> User_Header}}
-    <div class="ui pushable segment">
-      <div class="pusher">
-        <div id="content">
-          {{>Template.dynamic template=main}}
-          {{> User_Footer}}
-        </div>
-      </div>
-    </div>
+    {{>Template.dynamic template=main}}
+    {{> User_Footer}}
   {{/If_Authorized}}
 </template>

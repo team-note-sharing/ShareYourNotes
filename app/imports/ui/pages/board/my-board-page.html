@@ -1,18 +1,24 @@
 <template name="My_Board_Page">
-  <div class="ui container">
-    <div class="ui grid">
-      <div class="row">
-          <div>{{> React component=dashboard}}</div>
-      </div>
-      <div class="row">
-        <div class="eight wide column">
-          <h4>Add Note <a href="board/add-note"><i class="plus icon"></i></a></h4>
-
+{{#if Template.subscriptionsReady}}
+  <div class="ui bottom attached segment pushable">
+    <div class="ui visible inverted left vertical sidebar menu">
+      {{> React component=sidebar}}
+    </div>
+    <div class="pusher">
+      <div class="ui container">
+        <div class="ui grid">
+            <div class="row">
+                <h1>My Board</h1>
+            </div>
+            <div class="row">
+              <div class="eight wide column">
+                <h3>My Notes</h3>
+                  <div>{{> React component=dashboard}}</div>
+              </div>
+            </div>
         </div>
-        <div class="eight wide column">
-        <h4>My Notes</h4>
-      </div>
       </div>
     </div>
   </div>
+{{/if}}
 </template>

@@ -82,6 +82,27 @@ userRoutes.route('/filter', {
   },
 });
 
+export const findNotePageRouteName = 'Find_Note_Page';
+userRoutes.route('/find_note', {
+  name: findNotePageRouteName,
+  action() {
+    BlazeLayout.render('User_Layout', { main: findNotePageRouteName });
+  },
+});
+export const myClassRouteName = 'My_Class_Page';
+userRoutes.route('/myclass/:_id', {
+  name: myClassRouteName,
+  action() {
+    BlazeLayout.render('User_Layout', { main: myClassRouteName });
+  },
+});
+export const publicClassRouteName = 'Public_Class_Page';
+userRoutes.route('/pubclass', {
+  name: publicClassRouteName,
+  action() {
+    BlazeLayout.render('User_Layout', { main: publicClassRouteName });
+  },
+});
 export const myBoardPageRouteName = 'My_Board_Page';
 userRoutes.route('/board', {
   name: myBoardPageRouteName,
@@ -89,12 +110,18 @@ userRoutes.route('/board', {
     BlazeLayout.render('User_Layout', { main: myBoardPageRouteName });
   },
 });
-
 export const addNotePageRouteName = 'Add_Note_Page';
 userRoutes.route('/board/add-note', {
   name: addNotePageRouteName,
   action() {
     BlazeLayout.render('User_Layout', { main: addNotePageRouteName });
+  },
+});
+export const addCoursePageRouteName = 'Add_Course_Page';
+userRoutes.route('/board/add-course', {
+  name: addCoursePageRouteName,
+  action() {
+    BlazeLayout.render('User_Layout', { main: addCoursePageRouteName });
   },
 });
 /*                        MISC ROUTES                       */
