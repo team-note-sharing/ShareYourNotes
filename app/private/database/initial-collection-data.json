@@ -199,8 +199,16 @@
       "name": "NoteCollection",
       "contents": [
         {
+          "username": "nn4",
           "title": "UI Design",
           "course": "ICS332",
+          "description": "Fall 2018",
+          "attachment": "http://example.com"
+        },
+        {
+          "username": "hailing",
+          "title": "UI Design",
+          "course": "ICS441",
           "description": "Fall 2018",
           "attachment": "http://example.com"
         }

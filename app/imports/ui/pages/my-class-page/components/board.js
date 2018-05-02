@@ -48,8 +48,8 @@ export default class Board extends Component {
     return (
       <div className="wraper">
        <Header as='h1' textAlign='center' block> {courseTitle} </Header>
-       <a className="add" href={'/'+username+'/board/add-note'}>
-         <h3>Add Course<i className="plus icon"></i></h3>
+       <a className="add" href={'/'+username+'/myclass/' + FlowRouter.getParam('_id') + '/add-note'}>
+         <h3>Add New Note<i className="plus icon"></i></h3>
        </a>
        <Dropdown placeholder='Select topics' fluid multiple selection options={options} />
        <Container>

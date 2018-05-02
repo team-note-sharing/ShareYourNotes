@@ -111,7 +111,7 @@ userRoutes.route('/board', {
   },
 });
 export const addNotePageRouteName = 'Add_Note_Page';
-userRoutes.route('/board/add-note', {
+userRoutes.route('/myclass/:_id/add-note', {
   name: addNotePageRouteName,
   action() {
     BlazeLayout.render('User_Layout', { main: addNotePageRouteName });

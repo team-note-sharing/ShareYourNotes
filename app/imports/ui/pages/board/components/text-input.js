@@ -6,7 +6,7 @@ export default class TextInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '',
+      value: this.props.value,
       type: this.props.type,
       label: this.props.label,
       name: this.props.name,

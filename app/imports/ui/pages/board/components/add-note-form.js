@@ -5,10 +5,12 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import TextInput from './text-input';
 import FileInputs from './file-input';
 import { Notes } from '/imports/api/note/NoteCollection';
+import { Courses } from '/imports/api/course/CourseCollection';
 export default class NoteForm extends Component {
   constructor(props) {
     super(props);
     Meteor.subscribe(Notes.getPublicationName());
+    Meteor.subscribe(Courses.getPublicationName());
     //this.context = Notes.getSchema().namedContext('Add_Note_Page');
     this.state = {value: ''};
     this.state = {title: ''};
@@ -21,12 +23,14 @@ export default class NoteForm extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
+
+    const username = FlowRouter.getParam('username');
     const title = event.target.title.value;
     const course = event.target.course.value;
     const description = event.target.description.value;
     const attachment = '';
 
-    const newNoteData = { title, course, description, attachment };
+    const newNoteData = { username, title, course, description, attachment };
 
     const cleanData = Notes.getSchema().clean(newNoteData);
     // Determine validity.
@@ -34,7 +38,7 @@ export default class NoteForm extends Component {
     context.validate(cleanData);
     if (context.isValid()) {
       Notes.define(newNoteData);
-      FlowRouter.go('/' + FlowRouter.getParam('username') + '/board');
+      FlowRouter.go('/' + username + '/myclass/' + FlowRouter.getParam('_id') );
       //console.log("Valid");
     } else {
       console.log("Error");
@@ -46,13 +50,14 @@ export default class NoteForm extends Component {
 
   }
   render() {
+    const courseData = Courses.findDoc(FlowRouter.getParam('_id'));
     return <div className="ui container">
     <form onSubmit={this.handleSubmit} className="ui form">
       <div className="field">
-        <TextInput type="text" name="title" label="Title" placeholder="Programming"/>
+        <TextInput type="text" name="title" value="" label="Title" placeholder="Programming"/>
       </div>
       <div className="field">
-        <TextInput type="text" name="course" label="Course" placeholder="ICS 465"/>
+        <TextInput type="text" value={courseData.course} name="course" label="Course" placeholder="ICS 465"/>
       </div>
       <div className="field">
         <TextInput type="textarea" name="description" label="Description"/>

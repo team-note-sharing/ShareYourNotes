@@ -17,6 +17,7 @@ class NoteCollection extends BaseCollection {
   constructor() {
     super('Note', new SimpleSchema({
       // Remainder are optional
+      username: {type: String},
       title: { type: String },
       course: { type: String },
       description: { type: String },
@@ -35,12 +36,12 @@ class NoteCollection extends BaseCollection {
    *
    * @returns The newly created docID.
    */
-  define({ title = '', course = '', description = '', attachment = '' }) {
+  define({ username, title = '', course = '', description = '', attachment = '' }) {
     // make sure required fields are OK.
-    const checkPattern = { title: String, course: String, description: String, attachment: String };
-    check({ title, course, description, attachment }, checkPattern);
+    const checkPattern = { username: String, title: String, course: String, description: String, attachment: String };
+    check({ username, title, course, description, attachment }, checkPattern);
 
-    return this._collection.insert({ title, course, description, attachment });
+    return this._collection.insert({ username, title, course, description, attachment });
   }
 
   /**
@@ -50,11 +51,12 @@ class NoteCollection extends BaseCollection {
    */
   dumpOne(docID) {
     const doc = this.findDoc(docID);
+    const username = doc.username;
     const title = doc.title;
     const course = doc.course;
     const description = doc.description;
     const attachment = doc.attachment;
-    return { title, course, description, attachment };
+    return { username, title, course, description, attachment };
   }
 }
 
