@@ -17,21 +17,36 @@ export default class Dashboard extends Component {
     const myCourses = _.filter(_.map(Courses.findAll(),
         function makeCoursesObject(course) {
           if(course.username == username) {
-            return { header: course.course, description: course.professor, semester: course.semester };
+            return { header: course.course, description: course.professor, semester: course.semester, id: course._id };
           }
         }), function(value) {return value != null});
     let semesters = _.uniq(_.map(myCourses, function(course) {
       return course.semester;
     }));
+    console.log(myCourses);
     return (
         <Grid columns={4}>
-        {_.map(semesters, function(semester, key) {
+        {_.map(semesters, function(semester, semester_key) {
            return (
-          <Grid.Row key={key}>
+          <Grid.Row key={semester_key}>
              <Divider horizontal>
                {semester}
              </Divider>
-             <Card.Group className='cardItem' itemsPerRow={4} items={_.where(myCourses, {'semester': semester })} />
+             <Card.Group className='cardItem' itemsPerRow={4} >
+               {_.map(_.where(myCourses, {'semester': semester }), function(course, course_key) {
+                return (
+                    <Card key={course_key}>
+                     <Card.Content>
+                       <Card.Header as="a" href={'/' + username + '/myclass/' + course.id}>{course.header}</Card.Header>
+                       <Card.Description>
+                         {course.description}
+                       </Card.Description>
+                     </Card.Content>
+                   </Card>
+                );
+               })}
+
+             </Card.Group>
            </Grid.Row>
            );
         })}
@@ -39,42 +54,3 @@ export default class Dashboard extends Component {
     );
   }
 }
-/*
-
-        <div className="ui four columns grid">
-          <div className="row">
-            <div className="ui horizontal divider">
-              Fall 2018
-            </div>
-            <div className="column">
-              <button className="ui course button">ICS 332</button>
-            </div>
-            <div className="column">
-              <button className="ui course button">ICS 435</button>
-            </div>
-            <div className="column">
-              <button className="ui course button">ICS 311</button>
-            </div>
-            <div className="column">
-              <button className="ui course button">ICS 211</button>
-            </div>
-          </div>
-          <div className="row">
-            <div className="ui horizontal divider">
-              Spring 2018
-            </div>
-            <div className="column">
-              <button className="ui course button">JAP 211</button>
-            </div>
-            <div className="column">
-              <button className="ui course button">Math 311</button>
-            </div>
-            <div className="column">
-              <button className="ui course button">IP 367</button>
-            </div>
-            <div className="column">
-              <button className="ui course button">ICS 321</button>
-            </div>
-          </div>
-      </div>
- */
