@@ -16,10 +16,8 @@ export default class NoteForm extends Component {
     this.state = {title: ''};
     this.state = {course: ''};
     this.state = {description: ''};
-
-    this.handleFileUpload = this.handleFileUpload.bind(this);
-
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleFileUpload = this.handleFileUpload.bind(this);
   }
   handleSubmit(event) {
     event.preventDefault();
@@ -28,7 +26,7 @@ export default class NoteForm extends Component {
     const title = event.target.title.value;
     const course = event.target.course.value;
     const description = event.target.description.value;
-    const attachment = '';
+    const attachment = event.target.attachment;
 
     const newNoteData = { username, title, course, description, attachment };
 
@@ -37,17 +35,15 @@ export default class NoteForm extends Component {
     const context = Notes.getSchema().newContext()
     context.validate(cleanData);
     if (context.isValid()) {
-      Notes.define(newNoteData);
-      FlowRouter.go('/' + username + '/myclass/' + FlowRouter.getParam('_id') );
-      //console.log("Valid");
+      //Notes.define(newNoteData);
+      //FlowRouter.go('/' + username + '/myclass/' + FlowRouter.getParam('_id') );
+      console.log("Valid");
     } else {
       console.log("Error");
     }
-    //Notes.define(newNoteData);
   }
   handleFileUpload(event) {
-    event.preventDefault();
-
+    this.child.handleClick(event);
   }
   render() {
     const courseData = Courses.findDoc(FlowRouter.getParam('_id'));
@@ -63,9 +59,9 @@ export default class NoteForm extends Component {
         <TextInput type="textarea" name="description" label="Description"/>
       </div>
       <div className="field">
-        <FileInputs name="attachment" label="Attachment"/>
+        <FileInputs ref={instance => { this.child = instance; }} name="attachment" label="Attachment"/>
       </div>
-      <button className="ui primary button" type="submit">Submit</button>
+      <button className="ui primary button" onClick={this.handleFileUpload} type="submit">Submit</button>
       <a className="ui red button" href="../board">Cancel</a>
     </form>
     </div>;
