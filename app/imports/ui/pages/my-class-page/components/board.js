@@ -27,6 +27,9 @@ export default class Board extends Component {
     let noteTitle = _.uniq(_.map(myNotes, function(note) {
       return note.title;
     }));
+    const noteCard ={
+      margin: "20px"
+    }
     return (
       <div className="wraper">
        <Header as='h1' textAlign='center' block> {courseTitle} </Header>
@@ -35,18 +38,18 @@ export default class Board extends Component {
        </a>
     {/*<Dropdown placeholder='Select topics' fluid multiple selection options={options} />*/}
        <Container>
-        <Grid columns={4}>
+        <Grid columns={3}>
          {_.map(noteTitle, function(nTitle, title_key) {
             return (
            <Grid.Row key={title_key}>
               <Divider horizontal>
                 {nTitle}
               </Divider>
-              <Card.Group className='cardItem' itemsPerRow={4} >
+              <Card.Group className='cardItem' itemsPerRow={3} >
                 {_.map(_.where(myNotes, {'title': nTitle }), function(note, note_key) {
                  return (
                      <Card key={note_key}>
-                      <Card.Content>
+                      <Card.Content className={noteCard}>
                         {/*}<Card.Header as="a" href='#'>{course.header}</Card.Header>*/}
                         <Card.Description>
                           {note.description}
