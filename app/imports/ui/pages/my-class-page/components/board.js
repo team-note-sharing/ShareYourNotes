@@ -28,7 +28,7 @@ export default class Board extends Component {
       return note.title;
     }));
     return (
-      <div className="wraper">
+      <div className="ui container wraper">
        <Header as='h1' textAlign='center' block> {courseTitle} </Header>
        <a className="add" href={'/'+username+'/myclass/' + FlowRouter.getParam('_id') + '/add-note'}>
          <h3>Add New Note<i className="plus icon"></i></h3>
