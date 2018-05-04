@@ -20,7 +20,7 @@ export default class SideBar extends Component {
     const myCourses = _.filter(_.map(Courses.findAll(),
         function makeCoursesObject(course) {
           if(course.username == username) {
-            return { header: course.course, description: course.professor, semester: course.semester };
+            return { header: course.course, description: course.professor, semester: course.semester, id: course._id };
           }
         }), function(value) {return value != null});
     return (
@@ -31,7 +31,7 @@ export default class SideBar extends Component {
           <h3>Add Course<i className="plus icon"></i></h3>
         </a>
         {_.map(myCourses, function(course, key) {
-          return <a className="item" key={key}><h3>{course.header}</h3></a>;
+          return <a className="item" href={'/' + username + '/myclass/' + course.id} key={key}><h3>{course.header}</h3></a>;
         })}
       </div>
     );
