@@ -204,8 +204,8 @@
           "course": "ICS332",
           "description": "Fall 2018",
           "attachments": [
-            "Mars",
-            "Imu Cooking"
+            "https://kbob.github.io/images/sample-5.jpg",
+            "https://kbob.github.io/images/sample-5.jpg"
           ]
         },
         {
@@ -214,15 +214,14 @@
           "course": "ICS441",
           "description": "Fall 2018",
           "attachments": [
-            "Imu Cooking"
+            "https://kbob.github.io/images/sample-5.jpg"
           ]
         },
         {
           "username": "hailing",
           "title": "UI Design",
           "course": "ICS441",
-          "description": "Fall 2018",
-          "attachments": ""
+          "description": "Fall 2018"
         }
       ]
     }
