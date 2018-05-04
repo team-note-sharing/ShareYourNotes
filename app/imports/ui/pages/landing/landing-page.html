@@ -1,27 +1,16 @@
 <template name="Landing_Page">
-
   <div class="landing-menu">
-
-    <div class="ui grid">
-      <!--Design for computer only-->
-      <div class="computer only row">
-        <div class="ui top fixed borderless menu">
-          <div class="ui container">
-            <div class="item"><h1>ShareYourNotes</h1></div>
-            <div class="right aligned item">{{> Cas_Login }}</div>
-          </div>
-        </div>
-      </div><!--end computer only-->
-    </div> <!--end ui grid-->
 
     <div class="ui pushable segment">
       <div class="pusher">
         <div id="content">
           <div class="landing-section-2">
             <div id="content" class="ui grid">
-              <div class="ui eight wide column">
+              <div class="ui nine wide column">
               </div>
-                <div class="ui eight wide middle aligned column">
+              <div style= "margin-top:350px;padding-left: 20px" class="ui seven wide middle aligned column">
+                <h5 style="color:#21252B; margin-left: -25px;"> Easy login with UH ID: </h5>
+                {{> Cas_Login }}
               </div>
             </div>
           </div>
