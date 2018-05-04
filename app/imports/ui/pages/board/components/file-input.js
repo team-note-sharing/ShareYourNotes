@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import Dropzone from 'react-dropzone';
 import { Meteor } from 'meteor/meteor';
+import { Notes } from '/imports/api/note/NoteCollection';
 import { _ } from 'meteor/underscore';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FontIcon from 'material-ui/FontIcon';
@@ -12,6 +14,7 @@ var cloudinary = require('cloudinary');
 export default class FileInputs extends Component {
   constructor(props) {
     super(props);
+    Meteor.subscribe(Notes.getPublicationName());
     this.state = {
       label: this.props.label,
       files: [
@@ -23,14 +26,6 @@ export default class FileInputs extends Component {
       filesToBeSent:[],
       printcount:10,
     }
-    this.handleRemoveFile = this.handleRemoveFile.bind(this);
-  }
-  handleRemoveFile(event) {
-    event.preventDefault();
-    const files = this.state.files;
-    pos = files.map(function(e) { return e.id; }).indexOf(parseInt(event.target.name));
-    files.splice(pos, 1);
-    this.setState({ files: files });
   }
   onDrop(acceptedFiles, rejectedFiles) {
     var filesToBeSent=this.state.filesToBeSent;
@@ -73,7 +68,7 @@ export default class FileInputs extends Component {
     }
     this.setState({filesToBeSent,filesPreview});
   }
-  handleClick(event){
+  handleClick(newNoteData){
     var fileUrls = []
     cloudinary.config(Meteor.settings.public.cloudinary);
     if(this.state.filesToBeSent.length>0) {
@@ -90,12 +85,25 @@ export default class FileInputs extends Component {
           headers: { "X-Requested-With": "XMLHttpRequest" },
         }).then(response => {
           data = response.data;
-          const fileURL = data.secure_url // You should store this URL for future references in your app
+          const fileURL = data.secure_url; // You should store this URL for future references in your app
           fileUrls.push(fileURL);
         })
       });
       axios.all(uploaders).then(() => {
-        this.props.sendFileUrls(fileUrls);
+        //Finish the job
+        const attachments = fileUrls;
+        newNoteData.attachments = fileUrls;
+        const cleanData = Notes.getSchema().clean(newNoteData);
+        // Determine validity.
+        const context = Notes.getSchema().newContext();
+        context.validate(cleanData);
+        if (context.isValid()) {
+          Notes.define(newNoteData);
+          FlowRouter.go('/' + FlowRouter.getParam('username') + '/myclass/' + FlowRouter.getParam('_id') );
+          console.log("Valid");
+        } else {
+          console.log("Error");
+        }
       });
     }
     else{
