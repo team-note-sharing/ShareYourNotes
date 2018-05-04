@@ -203,14 +203,26 @@
           "title": "UI Design",
           "course": "ICS332",
           "description": "Fall 2018",
-          "attachment": "http://example.com"
+          "attachments": [
+            "Mars",
+            "Imu Cooking"
+          ]
         },
         {
           "username": "hailing",
           "title": "UI Design",
           "course": "ICS441",
           "description": "Fall 2018",
-          "attachment": "http://example.com"
+          "attachments": [
+            "Imu Cooking"
+          ]
+        },
+        {
+          "username": "hailing",
+          "title": "UI Design",
+          "course": "ICS441",
+          "description": "Fall 2018",
+          "attachments": ""
         }
       ]
     }

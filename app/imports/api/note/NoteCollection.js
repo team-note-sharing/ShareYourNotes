@@ -21,7 +21,8 @@ class NoteCollection extends BaseCollection {
       title: { type: String },
       course: { type: String },
       description: { type: String },
-      attachment: { type: String, optional: true },
+      attachments: { type: Array, optional: true },
+      'attachments.$': { type: String },
     }, { tracker: Tracker }));
   }
 
@@ -36,12 +37,12 @@ class NoteCollection extends BaseCollection {
    *
    * @returns The newly created docID.
    */
-  define({ username, title = '', course = '', description = '', attachment = '' }) {
+  define({ username, title = '', course = '', description = '', attachments = [] }) {
     // make sure required fields are OK.
-    const checkPattern = { username: String, title: String, course: String, description: String, attachment: String };
-    check({ username, title, course, description, attachment }, checkPattern);
+    const checkPattern = { username: String, title: String, course: String, description: String};
+    check({ username, title, course, description }, checkPattern);
 
-    return this._collection.insert({ username, title, course, description, attachment });
+    return this._collection.insert({ username, title, course, description, attachments });
   }
 
   /**
@@ -55,8 +56,8 @@ class NoteCollection extends BaseCollection {
     const title = doc.title;
     const course = doc.course;
     const description = doc.description;
-    const attachment = doc.attachment;
-    return { username, title, course, description, attachment };
+    const attachments = doc.attachments;
+    return { username, title, course, description, attachments };
   }
 }
 
