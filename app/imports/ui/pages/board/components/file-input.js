@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
-import Meteor from 'meteor/meteor';
+import { Meteor } from 'meteor/meteor';
+import { _ } from 'meteor/underscore';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FontIcon from 'material-ui/FontIcon';
 import {blue500, red500, greenA200} from 'material-ui/styles/colors';
 import { render } from 'react-dom';
 import './component.css';
-import request from 'superagent';
-var apiBaseUrl = "http://localhost:3000/images/";
+import axios from 'axios';
+var cloudinary = require('cloudinary');
 export default class FileInputs extends Component {
   constructor(props) {
     super(props);
@@ -73,20 +74,28 @@ export default class FileInputs extends Component {
     this.setState({filesToBeSent,filesPreview});
   }
   handleClick(event){
-    var self = this;
+    var fileUrls = []
+    cloudinary.config(Meteor.settings.public.cloudinary);
     if(this.state.filesToBeSent.length>0) {
       var filesArray = this.state.filesToBeSent;
-      var req = request.post(apiBaseUrl);
-      for(var i in filesArray){
-        req.attach(filesArray[i][0].name,filesArray[i][0])
-      }
-      console.log(req);
-      req.end(function(err,res){
-        if(err){
-          console.log("error ocurred");
-        }
-        console.log("res",res);
-        alert("File printing completed")
+      const cloudinaryData = Meteor.settings.public.cloudinary;
+      const uploaders = _.map(filesArray, function (file) {
+        const formData = new FormData();
+        formData.append("file", file[0]);
+        formData.append("upload_preset", cloudinaryData.upload_preset); // Replace the preset name with your own
+        formData.append("api_key", cloudinaryData.api_key); // Replace API key with your own Cloudinary key
+
+        // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
+        return axios.post(cloudinaryData.apiBaseUrl, formData, {
+          headers: { "X-Requested-With": "XMLHttpRequest" },
+        }).then(response => {
+          data = response.data;
+          const fileURL = data.secure_url // You should store this URL for future references in your app
+          fileUrls.push(fileURL);
+        })
+      });
+      axios.all(uploaders).then(() => {
+        this.props.sendFileUrls(fileUrls);
       });
     }
     else{

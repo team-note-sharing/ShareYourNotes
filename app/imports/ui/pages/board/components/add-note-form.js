@@ -12,12 +12,10 @@ export default class NoteForm extends Component {
     Meteor.subscribe(Notes.getPublicationName());
     Meteor.subscribe(Courses.getPublicationName());
     //this.context = Notes.getSchema().namedContext('Add_Note_Page');
-    this.state = {value: ''};
-    this.state = {title: ''};
-    this.state = {course: ''};
-    this.state = {description: ''};
+    this.state = {fileUrls: []};
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFileUpload = this.handleFileUpload.bind(this);
+    this.getFileUrls = this.getFileUrls.bind(this);
   }
   handleSubmit(event) {
     event.preventDefault();
@@ -45,6 +43,10 @@ export default class NoteForm extends Component {
   handleFileUpload(event) {
     this.child.handleClick(event);
   }
+  getFileUrls(fileUrls) {
+    this.setState({fileUrls: fileUrls});
+    console.log(this.state.fileUrls);
+  }
   render() {
     const courseData = Courses.findDoc(FlowRouter.getParam('_id'));
     return <div className="ui container">
@@ -59,7 +61,7 @@ export default class NoteForm extends Component {
         <TextInput type="textarea" name="description" label="Description"/>
       </div>
       <div className="field">
-        <FileInputs ref={instance => { this.child = instance; }} name="attachment" label="Attachment"/>
+        <FileInputs ref={instance => { this.child = instance; }} sendFileUrls={this.getFileUrls} name="attachment" label="Attachment"/>
       </div>
       <button className="ui primary button" onClick={this.handleFileUpload} type="submit">Submit</button>
       <a className="ui red button" href="../board">Cancel</a>
