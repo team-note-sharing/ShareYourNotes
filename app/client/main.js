@@ -7,7 +7,7 @@ import '/imports/ui/layouts/landing';
 import '/imports/ui/layouts/shared';
 import '/imports/ui/layouts/user';
 import '/imports/ui/pages/directory';
-import '/imports/ui/pages/filter';
+// import '/imports/ui/pages/filter';
 import '/imports/ui/pages/board';
 import '/imports/ui/pages/find-note-page';
 import '/imports/ui/pages/my-class-page';
