@@ -3,5 +3,8 @@
     padding: 0.78571429rem 1rem;
     box-shadow: none;
     border: 0px solid #d4d4d5;
-    border-radius: 5px;
+    border-radius: 0px;
+}
+.ui.horizontal.divider{
+  color: #FFA500;
 }

@@ -46,10 +46,10 @@ export default class TheBody extends Component {
           <Sidebar.Pusher>
             <Segment basic>
               <Header as='h2' color='orange'> {semester} </Header>
-              <Divider horizontal><Header as='h3' color='grey'>{noteTitle[0]}</Header></Divider>
+              <Divider horizontal>{noteTitle[0]}</Divider>
               <Card.Group className='cardItem' itemsPerRow={5} items={cpu} />
 
-              <Divider horizontal><Header as='h3' color='grey'>{noteTitle[1]}</Header></Divider>
+              <Divider horizontal>{noteTitle[1]}</Divider>
               <Card.Group className='cardItem' itemsPerRow={5} items={system} />
 
             </Segment>
