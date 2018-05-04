@@ -10,6 +10,13 @@
       "popupWidth": 810,
       "popupHeight": 610
     },
-    "initialDatabaseFileName": "database/initial-collection-data.json"
+    "initialDatabaseFileName": "database/initial-collection-data.json",
+    "cloudinary": {
+      "cloud_name": "share-your-notes",
+      "api_secret": "MABOoMp-BCoQGtGfuE1mWon9XQk",
+      "api_key": "537512129239125",
+      "upload_preset": "fjrldeic",
+      "apiBaseUrl": "https://api.cloudinary.com/v1_1/share-your-notes/image/upload"
+    }
   }
 }

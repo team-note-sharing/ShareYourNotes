@@ -11,43 +11,18 @@ export default class NoteForm extends Component {
     super(props);
     Meteor.subscribe(Notes.getPublicationName());
     Meteor.subscribe(Courses.getPublicationName());
-    //this.context = Notes.getSchema().namedContext('Add_Note_Page');
-    this.state = {value: ''};
-    this.state = {title: ''};
-    this.state = {course: ''};
-    this.state = {description: ''};
-
-    this.handleFileUpload = this.handleFileUpload.bind(this);
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleSubmit(event) {
+   handleSubmit(event) {
+
     event.preventDefault();
-
-    const username = FlowRouter.getParam('username');
-    const title = event.target.title.value;
-    const course = event.target.course.value;
-    const description = event.target.description.value;
-    const attachment = '';
-
-    const newNoteData = { username, title, course, description, attachment };
-
-    const cleanData = Notes.getSchema().clean(newNoteData);
-    // Determine validity.
-    const context = Notes.getSchema().newContext()
-    context.validate(cleanData);
-    if (context.isValid()) {
-      Notes.define(newNoteData);
-      FlowRouter.go('/' + username + '/myclass/' + FlowRouter.getParam('_id') );
-      //console.log("Valid");
-    } else {
-      console.log("Error");
-    }
-    //Notes.define(newNoteData);
-  }
-  handleFileUpload(event) {
-    event.preventDefault();
-
+     const username = FlowRouter.getParam('username');
+     const title = event.target.title.value;
+     const course = event.target.course.value;
+     const description = event.target.description.value;
+     const attachments = [];
+     const newNoteData = { username, title, course, description, attachments };
+     this.child.handleClick(newNoteData);
   }
   render() {
     const courseData = Courses.findDoc(FlowRouter.getParam('_id'));
@@ -63,7 +38,7 @@ export default class NoteForm extends Component {
         <TextInput type="textarea" name="description" label="Description"/>
       </div>
       <div className="field">
-        <FileInputs name="attachment" label="Attachment"/>
+        <FileInputs ref={instance => { this.child = instance; }} name="attachment" label="Attachment"/>
       </div>
       <button className="ui primary button" type="submit">Submit</button>
       <a className="ui red button" href="../board">Cancel</a>

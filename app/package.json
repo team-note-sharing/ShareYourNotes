@@ -9,11 +9,14 @@
   },
   "dependencies": {
     "babel-runtime": "^6.18.0",
+    "material-ui": "^0.20.0",
     "meteor-node-stubs": "~0.2.0",
-    "react": "^16.3.1",
+    "react": "^16.3.2",
     "react-dom": "^16.3.1",
+    "react-dropzone": "^4.2.9",
     "semantic-ui-react": "^0.79.1",
-    "simpl-schema": "^0.3.2"
+    "simpl-schema": "^0.3.2",
+    "superagent": "^3.8.3"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.1",

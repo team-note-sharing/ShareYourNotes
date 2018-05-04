@@ -203,14 +203,25 @@
           "title": "UI Design",
           "course": "ICS332",
           "description": "Fall 2018",
-          "attachment": "http://example.com"
+          "attachments": [
+            "https://kbob.github.io/images/sample-5.jpg",
+            "https://kbob.github.io/images/sample-5.jpg"
+          ]
         },
         {
           "username": "hailing",
           "title": "UI Design",
           "course": "ICS441",
           "description": "Fall 2018",
-          "attachment": "http://example.com"
+          "attachments": [
+            "https://kbob.github.io/images/sample-5.jpg"
+          ]
+        },
+        {
+          "username": "hailing",
+          "title": "UI Design",
+          "course": "ICS441",
+          "description": "Fall 2018"
         }
       ]
     }
