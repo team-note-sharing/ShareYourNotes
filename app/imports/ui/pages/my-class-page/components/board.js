@@ -5,7 +5,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Notes } from '/imports/api/note/NoteCollection';
 import { Courses } from '/imports/api/course/CourseCollection';
 import { _ } from 'meteor/underscore';
-import { Card, Divider, Header, Container, Dropdown, Grid} from 'semantic-ui-react';
+import { Image as ImageComponent, Item, Container, Header } from 'semantic-ui-react'
 import './board.css';
 export default class Board extends Component {
   constructor(props) {
@@ -21,59 +21,30 @@ export default class Board extends Component {
     const myNotes = _.filter(_.map(Notes.findAll(),
         function makeCoursesObject(note) {
           if(note.username == username && note.course == courseTitle) {
-            return { title: note.title, course: note.course, description: note.description, id: note._id };
+            return { title: note.title, course: note.course, description: note.description, id: note._id, attachments: note.attachments };
           }
         }), function(value) {return value != null});
-    let noteTitle = _.uniq(_.map(myNotes, function(note) {
-      return note.title;
-    }));
-    const noteCard ={
-      margin: "20px"
-    }
     return (
-      <div className="wraper">
-       <Header as='h1' textAlign='center' block> {courseTitle} </Header>
-       <a className="add" href={'/'+username+'/myclass/' + FlowRouter.getParam('_id') + '/add-note'}>
-         <h3>Add New Note<i className="plus icon"></i></h3>
-       </a>
-    {/*<Dropdown placeholder='Select topics' fluid multiple selection options={options} />*/}
-       <Container>
-        <Grid columns={3}>
-         {_.map(noteTitle, function(nTitle, title_key) {
+        <Container>
+          <Header as='h1' textAlign='center' block> {courseTitle} </Header>
+          <a className="add" href={'/'+username+'/myclass/' + FlowRouter.getParam('_id') + '/add-note'}>
+            <h3>Add New Note<i className="plus icon"></i></h3>
+          </a>
+        <Item.Group>
+          {_.map(myNotes, function(note, key) {
             return (
-           <Grid.Row key={title_key}>
-              <Divider horizontal>
-                {nTitle}
-              </Divider>
-              <Card.Group className='cardItem' itemsPerRow={3} >
-                {_.map(_.where(myNotes, {'title': nTitle }), function(note, note_key) {
-                 return (
-                     <Card key={note_key}>
-                      <Card.Content className={noteCard}>
-                        {/*}<Card.Header as="a" href='#'>{course.header}</Card.Header>*/}
-                        <Card.Description>
-                          {note.description}
-                        </Card.Description>
-                      </Card.Content>
-                    </Card>
-                 );
-                })}
+                <Item key={key} href={'/'+username+'/myclass/' + FlowRouter.getParam('_id') + '/mynote/' + note.id}>
+                  <Item.Image size='tiny' src={note.attachments[0]} />
+                  <Item.Content>
+                    <Item.Header>{note.title}</Item.Header>
+                    <Item.Description>{note.description}</Item.Description>
+                  </Item.Content>
+                </Item>
+            )
+          })}
 
-              </Card.Group>
-            </Grid.Row>
-            );
-         })}
-         </Grid>
-          {/*
-          <Divider horizontal><Header as='h2'>{noteTitle[0]}</Header></Divider>
-          <Card.Group className='cardItem' itemsPerRow={5} items={cpu} />
-
-          <Divider horizontal><Header as='h2'>{noteTitle[1]}</Header></Divider>
-          <Card.Group className='cardItem' itemsPerRow={5} items={system} />
-          */}
-       </Container>
-
-      </div>
+        </Item.Group>
+        </Container>
     );
   }
 }

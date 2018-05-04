@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Notes } from '/imports/api/note/NoteCollection';
+import { Courses } from '/imports/api/course/CourseCollection';
 import { _ } from 'meteor/underscore';
 import { Card, Divider, Header, Container, Dropdown, Grid} from 'semantic-ui-react';
 import './board.css';
@@ -10,12 +11,19 @@ export default class NoteBoard extends Component {
   constructor(props) {
     super(props);
     Meteor.subscribe(Notes.getPublicationName());
+    Meteor.subscribe(Courses.getPublicationName());
   }
   render() {
     const username = FlowRouter.getParam('username');
     const noteData = Notes.findDoc(FlowRouter.getParam('_note_id'));
+    const courseData = Courses.findDoc(FlowRouter.getParam('_id'));
     return (
-        <div className="ui container wraper">
+        <div className="ui container wrapper">
+          <Header as='h1' textAlign='center' block>
+            <a className="header" href={'/'+username+'/myclass/' + FlowRouter.getParam('_id')}>
+              {courseData.course}
+              </a>
+          </Header>
           <div className="ui items">
             <div className="item">
               <div className="content">
