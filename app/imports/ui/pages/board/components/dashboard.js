@@ -21,7 +21,6 @@ export default class Dashboard extends Component {
             return { header: course.course, description: course.professor, semester: course.semester, id: course._id };
           }
         }), function(value) {return value != null});
-        console.log(myCourses);
     let semesters = _.uniq(_.map(myCourses, function(course) {
       return course.semester;
     }));

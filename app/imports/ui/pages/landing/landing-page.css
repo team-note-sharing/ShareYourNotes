@@ -1,3 +1,10 @@
+.ui.pushable.segment {
+  background: url("backimg-crop2.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 .top.borderless.menu {
   border: none;
   box-shadow: none;
@@ -29,7 +36,7 @@ a#mobile_item.item {
 }
 
 .landing-section-2 {
-  background: url('https://cdn.lynda.com/course/373782/373782-636247511734821922-16x9.jpg') no-repeat;
+  background: url('https://github.com/hailing-li/hailing-li.github.io/blob/master/backimg-crop1.jpg?raw=true') no-repeat center fixed;
   height: 800px;
   background-size: cover;
 }

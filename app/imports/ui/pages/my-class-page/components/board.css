@@ -11,3 +11,9 @@
 .add: visited {
   color: #21252B;
 }
+a.header {
+  color: black;
+}
+a.header:hover {
+  color: #1e70bf;
+}

@@ -5,7 +5,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Courses } from '/imports/api/course/CourseCollection';
 import { Profiles } from '/imports/api/profile/ProfileCollection';
 import { _ } from 'meteor/underscore';
-import { Card, Divider, Grid, Button} from 'semantic-ui-react';
+import { Sidebar,Menu,Card, Divider, Grid, Button} from 'semantic-ui-react';
 
 export default class SideBar extends Component {
   constructor(props) {
@@ -25,14 +25,14 @@ export default class SideBar extends Component {
         }), function(value) {return value != null});
     return (
       <div>
-        <a className="item" href="#">{profile.firstName} {profile.lastName}</a>
+        <a color='orange' className="item" href="#">{profile.firstName} {profile.lastName}</a>
         <a className="item" href="#"><h2>My Notebook</h2></a>
-        <a className="item" href="board/add-course">
-          <h3>Add Course<i className="plus icon"></i></h3>
-        </a>
         {_.map(myCourses, function(course, key) {
           return <a className="item" href={'/' + username + '/myclass/' + course.id} key={key}><h3>{course.header}</h3></a>;
         })}
+        <a className="item" href="board/add-course">
+          <h3>Add Course<i className="plus icon"></i></h3>
+        </a>
       </div>
     );
   }

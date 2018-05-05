@@ -17,6 +17,7 @@ export default class NoteForm extends Component {
 
     event.preventDefault();
      const username = FlowRouter.getParam('username');
+     const courseID = FlowRouter.getParam('_id');
      const title = event.target.title.value;
      const course = event.target.course.value;
      const description = event.target.description.value;
@@ -25,6 +26,8 @@ export default class NoteForm extends Component {
      this.child.handleClick(newNoteData);
   }
   render() {
+    const username = FlowRouter.getParam('username');
+    const courseID = FlowRouter.getParam('_id');
     const courseData = Courses.findDoc(FlowRouter.getParam('_id'));
     return <div className="ui container">
     <form onSubmit={this.handleSubmit} className="ui form">
@@ -41,7 +44,7 @@ export default class NoteForm extends Component {
         <FileInputs ref={instance => { this.child = instance; }} name="attachment" label="Attachment"/>
       </div>
       <button className="ui primary button" type="submit">Submit</button>
-      <a className="ui red button" href="../board">Cancel</a>
+      <a className="ui red button" href={'/' + username + /myclass/ + courseID}>Cancel</a>
     </form>
     </div>;
   }
