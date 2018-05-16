@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 
 /* eslint-disable no-console */
 
@@ -11,7 +12,8 @@ Template.Cas_Login.events({
    */
   'click .cas-logout': function casLogout(event) {
     event.preventDefault();
-    Meteor.logout();
+    FlowRouter.go('/');
+    //Meteor.logout();
     return false;
   },
 
@@ -27,7 +29,8 @@ Template.Cas_Login.events({
         console.log(error);
       }
     };
-    Meteor.loginWithCas(callback);
+    FlowRouter.go('/janst');
+    //Meteor.loginWithCas(callback);
     return false;
   },
 });

@@ -6,7 +6,8 @@ import { Profiles } from '/imports/api/profile/ProfileCollection';
 /* Create a profile document for this user if none exists already. */
 Accounts.validateNewUser(function validate(user) {
   if (user) {
-    const username = user.services.cas.id;
+    //const username = user.services.cas.id;
+    const username = 'janst';
     if (!Profiles.isDefined(username)) {
       Profiles.define({ username });
     }

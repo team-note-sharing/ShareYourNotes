@@ -86,16 +86,16 @@
       "name": "ProfileCollection",
       "contents": [
         {
-          "firstName": "Lee",
-          "lastName": "Altenberg",
-          "username": "altenber",
+          "firstName": "Jan",
+          "lastName": "Stelovsky",
+          "username": "janst",
           "bio": "I am an Associate Professor of Information and Computer Sciences at the University of Hawaii.",
           "location": "Honolulu, HI",
           "interests": [
-            "Evolutionary Computation"
+            "Human-Computer Interaction"
           ],
           "title": "Associate Professor, Information and Computer Sciences",
-          "picture": "/images/altenberg.jpg"
+          "picture": "/images/jan.jpg"
         },
         {
           "firstName": "Kyungim",
@@ -152,10 +152,10 @@
       "name": "CourseCollection",
       "contents": [
         {
-          "username": "nn4",
-          "course": "ICS332",
+          "username": "janst",
+          "course": "ICS465",
           "semester": "Fall 2018",
-          "professor": "Henri Casanova"
+          "professor": "Jan Stelovsky"
         },
         {
           "username": "nn4",
@@ -199,9 +199,9 @@
       "name": "NoteCollection",
       "contents": [
         {
-          "username": "nn4",
+          "username": "janst",
           "title": "UI Design",
-          "course": "ICS332",
+          "course": "ICS465",
           "description": "Fall 2018",
           "attachments": [
             "https://kbob.github.io/images/sample-5.jpg",

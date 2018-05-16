@@ -35,7 +35,8 @@ Template.User_Header.events({
    */
   'click .cas-logout': function casLogout(event) {
     event.preventDefault();
-    Meteor.logout();
+    FlowRouter.go('/');
+    //Meteor.logout();
     return false;
   },
 
@@ -51,7 +52,8 @@ Template.User_Header.events({
         console.log(error);
       }
     };
-    Meteor.loginWithCas(callback);
+    FlowRouter.go('/janst');
+    //Meteor.loginWithCas(callback);
     return false;
   },
 });
