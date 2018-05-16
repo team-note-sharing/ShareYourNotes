@@ -3,6 +3,7 @@
     "baseUrl": "https://cas-test.its.hawaii.edu/cas/",
     "autoClose": true
   },
+  
   "public": {
     "cas": {
       "loginUrl": "https://cas-test.its.hawaii.edu/cas/login",
